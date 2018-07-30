@@ -1,0 +1,163 @@
+\documentclass{knowledge-cards}
+ 
+% Card types and their colors
+\newcardtype{specification}{255, 0, 0}
+\newcardtype{standard}{128, 0, 0} 
+\newcardtype{procedure}{112, 48, 160}
+\newcardtype{tutorial}{0, 112, 192}
+\newcardtype{recommendation}{0, 176, 80}
+\newcardtype{note}{255, 192, 0}
+
+%----------------------------------------------------------------------
+\begin{document}
+%----------------------------------------------------------------------
+  
+%----------------------------------------------------------------------
+\card%
+{specification}%
+{O10}%
+{The knowledge-card \LaTeX\ class}%
+{20180729}{https://github.com/mariomerinomartinez/knowledge-cards}
+%----------------------------------------------------------------------
+
+This is the documentation of the
+\cc{knowledge-card} \LaTeX\ class\sidenote{\link{https://github.com/ mariomerinomartinez/ knowledge-cards}{https://github.com/mariomerinomartinez/knowledge-cards}}, 
+which is a custom subclass of thet \cc{tufte-latex} class\sidenote{\link{https://ctan.org/pkg/tufte-latex}{https://ctan.org/pkg/tufte-latex}}. The code of this card can be used as a template when writing new cards.
+
+%----------------------------------------------------------------------
+\section{Card definition}
+%----------------------------------------------------------------------
+ 
+Define a new card type in the \bb{preamble} 
+with\marginnote{\cc{\textbackslash newcardtype}}
+%
+{ \color{\cardtype}%
+\begin{verbatim}
+  \newcardtype{card type}{R, G, B}
+\end{verbatim}
+}%
+%
+\noindent where \cc{R,G,B} range from $0$ to $255$ and 
+define the color of the card.
+Then, after {\color{\cardtype} \verb|\begin{document}|}, 
+declare a new card with\marginnote{\cc{\textbackslash card}}
+%
+{\color{\cardtype}%
+\begin{verbatim}
+  \card{card type}{card label}{card title}{date}{card URL}
+    <your text goes here> 
+  \newpage ~ % Put this only if card is one page
+\end{verbatim}
+}%
+%
+\noindent 
+The \cc{card URL} is used to format the QR code in the back page
+of the card.
+The variable \cc{\textbackslash cardtype}\marginnote{\cc{\textbackslash cardtype}} is set automatically after the card declaration and can be used
+to refer to the card color. 
+Cards only accept {\color{\cardtype}\verb|\section|}
+and {\color{\cardtype}\verb|\subsection|} for sectioning.
+
+%----------------------------------------------------------------------
+\section{Text styles}
+%----------------------------------------------------------------------
+ 
+%
+\begin{itemize}
+\item {\color{\cardtype}\verb|\bb|}: bold colorized font\marginnote{
+\cc{\textbackslash bb}, \cc{\textbackslash ii}, \cc{\textbackslash cc}}.
+\item {\color{\cardtype}\verb|\ii|}: italic colorized font.
+\item {\color{\cardtype}\verb|\cc|}: typewriter colorized font.
+\item {\color{\cardtype}\verb|\link{link text}{address}|}: colorized link. Use
+\cc{mailto:} to create a link to an email address\marginnote{
+\cc{\textbackslash link}, \cc{\textbackslash cardlink}}.
+\item {\color{\cardtype}\verb|\cardlink{card type}{link text}{address}|}: colorized link to another card, of type \cc{card type}.  
+\end{itemize}
+%
+
+%----------------------------------------------------------------------
+\section{Using the margin}
+%----------------------------------------------------------------------
+ 
+Side notes and references: 
+%
+\begin{itemize}
+\item {\color{\cardtype}\verb|\sidenote[<number>][<offset>]{text}|}: numbered side note\marginnote{\cc{\textbackslash sidenote}, \cc{\textbackslash marginnote}}.
+\item {\color{\cardtype}\verb|\marginnote[<offset>]{text}|}: unnumbered side note.
+\item {\color{\cardtype}\verb|\cite[<offset>]{bibkey1,bibkey2,...}|}: cite\marginnote{\cc{\textbackslash cite}} references in bibtex file.
+\end{itemize}
+%
+Figures\marginnote{\cc{\textbackslash marginfigure}}:
+%
+\begin{marginfigure}[+0.1cm]
+\begin{center}
+\includegraphics[width=\textwidth]{figs/latex.png} 
+\end{center}
+\caption{Example of margin figure.}
+\label{fig:examplefig}
+\end{marginfigure}
+%
+%
+{\color{\cardtype}%
+\begin{verbatim}
+  \begin{marginfigure}[<offset>]
+    \begin{center}
+      \includegraphics{figurefile} 
+    \end{center}
+    \caption{text}
+    \label{figlabel}
+  \end{marginfigure}
+\end{verbatim}
+}%
+%
+Margin tables can be likewise created with\marginnote{\cc{\textbackslash margintable}} \cc{\textbackslash margintable}.
+
+The optional \cc{offset} argument in the commands and 
+environments above allows moving
+the margin object up (e.g. \cc{+1cm}) or down (e.g. \cc{-1cm}), 
+useful if there are overlaps with other
+margin objects. 
+The optional \cc{number} argument in {\color{\cardtype}\verb|\sidenote|}
+changes the default side note number. 
+To give an offset but leave the number unchanged, use
+{\color{\cardtype}\verb|\sidenote[][<offset>]{text}|}.
+To be able to cite references, load the bibtex database somewhere before
+{\color{\cardtype}\verb|\end{document}|}
+with {\color{\cardtype} \verb|\nobibliography{bibfile}|}.
+With figures and tables, the caption and label are optional.
+
+To create text, a figure, or a table that
+\bb{spans the main text area and the margin}, use the
+\cc{fullwidth},\marginnote{\cc{\textbackslash fullwidth}, \cc{\textbackslash figure*}, \cc{\textbackslash table*}}
+\cc{figure*} and
+\cc{table*} environments.
+Figures and tables in the main text area are made with the standard
+\cc{figure} and \cc{table} environments.
+%
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{figs/latex.png} 
+\end{center}
+\caption{Example figure.}
+\label{fig:examplefig2}
+\end{figure}
+%
+%
+\begin{figure*}
+\begin{center}
+\includegraphics[width=\textwidth]{figs/latex.png} 
+\end{center}
+\caption{Example figure*.}
+\label{fig:examplefig3}
+\end{figure*}
+%
+ 
+% \newpage ~
+
+%----------------------------------------------------------------------
+\nobibliography{bibtex/bibtex} 
+%----------------------------------------------------------------------
+
+%----------------------------------------------------------------------
+\end{document}
+%----------------------------------------------------------------------
