@@ -15,6 +15,7 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[yearmonthsep={},monthdaysep={}]{datetime2}
 \RequirePackage{titlecaps}
+\usepackage{graphicx,framed,amsmath,amsfonts,amssymb}
  
 % Set default page style for non-card pages
 \pagestyle{empty}%
