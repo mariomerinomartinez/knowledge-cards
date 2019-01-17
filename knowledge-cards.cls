@@ -123,5 +123,13 @@
 \setcounter{table}{0} 
 } 
 
+% Default card types and their colors
+\newcardtype{specification}{255, 0, 0}
+\newcardtype{standard}{128, 0, 0} 
+\newcardtype{procedure}{112, 48, 160}
+\newcardtype{tutorial}{0, 112, 192}
+\newcardtype{recommendation}{0, 176, 80}
+\newcardtype{note}{255, 192, 0}
+
 % End of file
 \endinput
